@@ -1,0 +1,13 @@
+@model NetCoreWebGoat.Models.PostModel
+
+<form method="POST" asp-controller="Post" asp-action="Create" enctype="multipart/form-data">
+    <div class="editor-field">
+        @Html.TextAreaFor(model => model.Text)
+    </div>
+
+    <div class="editor-field">
+        <input name="file" type="file" asp-for="Photo" />
+    </div>
+
+    <button class="btn btn-success">Create</button>
+</form>

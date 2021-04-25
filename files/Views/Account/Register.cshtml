@@ -1,0 +1,34 @@
+@model NetCoreWebGoat.Models.UserRegisterModel
+
+<div class="text-center">
+    <h1 class="text-dark display-4">Register</h1>
+    <form method="POST" asp-controller="Account" asp-action="Register">
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { placeholder = "Name" } })
+            <br />
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { placeholder = "Last Name" } })
+            <br />
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = "Email" } })
+            <br />
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.Password, new { placeholder = "Password" })
+            <br />
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.Confirm, new { placeholder = "Confirm Password" })
+            <br />
+            @Html.ValidationMessageFor(model => model.Confirm)
+        </div>
+        <button class="btn btn-primary">Register</button><br />
+        <a class="text-dark" href="/Account/Login">Login</a><br />
+    </form>
+</div>

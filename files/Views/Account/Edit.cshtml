@@ -1,0 +1,10 @@
+@model NetCoreWebGoat.Models.UserChangeModel
+
+<h4>Change photo</h4>
+<form method="POST" asp-controller="Account" asp-action="Edit" enctype="multipart/form-data">
+    <div class="editor-field">
+        <input name="file" type="file" asp-for="Photo" />
+    </div>
+
+    <button class="btn btn-success">Save</button>
+</form>

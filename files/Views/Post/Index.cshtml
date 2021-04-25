@@ -1,0 +1,30 @@
+@model System.Collections.Generic.List<NetCoreWebGoat.Models.PostModelList>
+
+<div style="text-align: center">
+    <a href="/Post/Create" class="btn btn-primary">New Post</a>
+</div>
+@foreach (var item in Model)
+{
+    <div class="post-card">
+    <div class="post-card-header">
+        <div class="post-user-box">
+            <img class="post-profile-image" src='~/upload/@(item.UserPhoto ?? "profile-default.jpg")' />
+            <div>
+                <h4>@item.UserName @item.UserLastName</h4>
+                <span>@item.CreatedAtFormatted</span>
+            </div>
+        </div>
+        @if (item.Owner)
+            {
+                <div>
+                    <button class="btn btn-danger" onclick="removePost(@item.Id)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+            }
+        </div>
+        <h6>@item.Text</h6>
+        <img src="~/upload/@item.Photo" />
+        <div class="post-footer"></div>
+    </div>
+}
