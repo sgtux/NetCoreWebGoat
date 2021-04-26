@@ -22,7 +22,7 @@
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DATABASE_CONNECTION_STRING": "Host=172.17.0.2;Port=5432;Pooling=true;User Id=postgres;Password=postgres123"
+        "DATABASE_CONNECTION_STRING": "Host=172.30.30.10;Port=5432;Pooling=true;User Id=postgres;Password=Postgres123"
       }
     }
   }

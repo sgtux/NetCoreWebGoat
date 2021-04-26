@@ -9,4 +9,8 @@
     <PackageReference Include="npgsql" Version="5.0.4" />
   </ItemGroup>
 
+  <Target Name="CopyDbScriptFile" AfterTargets="Publish">
+    <Copy SourceFiles="script.sql" DestinationFolder="$(PublishDir)" />
+  </Target>
+
 </Project>

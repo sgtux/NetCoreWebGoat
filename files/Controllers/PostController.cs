@@ -21,9 +21,10 @@ namespace NetCoreWebGoat.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index([FromQuery] string search)
         {
-            var posts = _postRepository.GetAll();
+            ViewBag.Search = search ?? "";
+            var posts = _postRepository.GetAll(search);
             posts.ForEach(p => p.Owner = p.UserId == UserId);
             return View(posts);
         }
@@ -37,16 +38,16 @@ namespace NetCoreWebGoat.Controllers
         [HttpPost("Create")]
         public async Task<IActionResult> Create(PostModel model)
         {
-            model.Photo = HashHelper.Md5(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")).Substring(0, 6) + model.File.FileName;
-            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "upload", model.Photo);
-            model.UserId = UserId;
-            if (model.File.Length == 0)
+            if (model.File is null || model.File.Length == 0)
             {
                 ModelState.AddModelError(nameof(model.File), "Invalid file.");
             }
 
             if (ModelState.IsValid)
             {
+                model.Photo = HashHelper.Md5(DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss")).Substring(0, 6) + model.File.FileName;
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "upload", model.Photo);
+                model.UserId = UserId;
                 using (var stream = new FileStream(pathToSave, FileMode.Create))
                 {
                     await model.File.CopyToAsync(stream);

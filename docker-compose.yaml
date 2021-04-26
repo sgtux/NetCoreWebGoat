@@ -1,0 +1,25 @@
+services:
+  database:
+    environment:
+      - POSTGRES_PASSWORD=Postgres123
+    image: postgres
+    networks:
+      lan:
+        ipv4_address: 172.30.30.10
+
+  site:
+    depends_on:
+      - database
+    environment:
+      - DATABASE_CONNECTION_STRING=Host=172.30.30.10;Port=5432;Pooling=true;User Id=postgres;Password=Postgres123
+      - ASPNETCORE_ENVIRONMENT=Development 
+    image: sgtux/netcorewebgoat
+    networks:
+      lan:
+        ipv4_address: 172.30.30.20
+
+networks:
+  lan:
+    ipam:
+      config:
+        - subnet: 172.30.30.0/24

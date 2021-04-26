@@ -1,7 +1,10 @@
 @model System.Collections.Generic.List<NetCoreWebGoat.Models.PostModelList>
 
 <div style="text-align: center">
-    <a href="/Post/Create" class="btn btn-primary">New Post</a>
+    <input id="txtSearch" value="@ViewBag.Search" style="margin: 10px" /><button onclick="searchPosts()"
+        class="btn btn-primary">Search</button><br />
+    <span>Results for: '@Html.Raw(ViewBag.Search)' <span>
+
 </div>
 @foreach (var item in Model)
 {
@@ -23,8 +26,11 @@
                 </div>
             }
         </div>
-        <h6>@item.Text</h6>
+        <h6>@Html.Raw(item.Text)</h6>
         <img src="~/upload/@item.Photo" />
         <div class="post-footer"></div>
     </div>
 }
+<div class="box-float">
+    <a href="/Post/Create" class="btn btn-success">New Post</a><br />
+</div>

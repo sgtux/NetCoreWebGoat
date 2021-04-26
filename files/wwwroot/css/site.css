@@ -107,8 +107,9 @@ body {
 }
 
 .post-profile-image {
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
+  border-radius: 20%;
 }
 
 .post-card-header {
@@ -150,4 +151,15 @@ body {
   height: 30px;
   border-radius: 50%;
   margin-right: 10px;
+}
+
+.box-text-post > textarea {
+  height: 100px;
+  width: 400px;
+}
+
+.box-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
 }

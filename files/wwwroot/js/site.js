@@ -11,3 +11,8 @@ function removePost(id) {
 function logout() {
     window.location = '/Account/Logout';
 }
+
+function searchPosts() {
+    const elem = document.getElementById('txtSearch')
+    window.location = '/Post?search=' + elem.value
+}
