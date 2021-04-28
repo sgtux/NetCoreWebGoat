@@ -163,3 +163,10 @@ body {
   right: 20px;
   bottom: 20px;
 }
+
+.result-check-readiness {
+  font-size:12px;
+  max-width: 300px;
+  text-align: center;
+  margin: 0 auto;
+}

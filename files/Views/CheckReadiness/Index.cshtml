@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = "Checkreadiness Page";
+}
+
+<div class="text-center">
+    <h2 class="display-4">Check Readiness</h2>
+    <span>Ip</span>
+    <input id="ip" value="@ViewBag.Ip" />
+    <button style="margin-left: 10px" class="btn btn-primary" onclick="checkReadiness()">Check</button>
+    <div style="font-size:12px" class="result-check-readiness">
+        @ViewBag.Result
+    </div>
+</div>

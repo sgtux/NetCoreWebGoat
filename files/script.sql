@@ -26,9 +26,9 @@ INSERT INTO "User" (Name, LastName, Email, Password, Photo, CreatedAt, UpdatedAt
 
 INSERT INTO "Post" (Text, Photo, CreatedAt, UpdatedAt, UserId) VALUES
 ('Everything that you want from me negative will stick to your chest and return in the form of peace.', 'cf96c2bobpost2.jpg', '2021-04-22 14:54:59.629374', null, 3),
-('To change the world you need to change your mind.', '61615bjimipost3.jpg', '2021-04-23 14:31:53.475346', null, 1),
-('The only thing you have in this life that is really worth it are feelings.', 'ada3a2janispost2.jpg', '2021-04-23 14:38:37.773427', null, 2),
+('The only thing you have in this life that is really worth it are feelings.', 'ada3a2janispost2.jpg', '2021-04-23 14:30:37.773427', null, 1),
+('To change the world you need to change your mind.', '61615bjimipost3.jpg', '2021-04-23 14:31:53.475346', null, 2),
 ('As long as eye color is more important than skin color, there will be war!', 'ac6612bobpost1.jpg', '2021-04-23 14:51:58.845436', null, 3),
-('When the power of love overcomes the love of power the world will know peace.', '1f3fe2jimipost2.jpg', '2021-04-25 14:46:10.952131', null, 1),
+('When the power of love overcomes the love of power the world will know peace.', '1f3fe2jimipost2.jpg', '2021-04-25 14:46:10.952131', null, 2),
 ('If those who dont like me knew what I feel for them, they would like it even less.', '3136f6bobpost3.jpg', '2021-04-26 14:40:48.199879', null, 3),
-('It is better to live, Ten years of an effervescent life than to die at seventy and have spent your life watching TV.', 'f0e194janispost1.jpg', '2021-04-26 14:47:37.880515', null, 2);
+('It is better to live, Ten years of an effervescent life than to die at seventy and have spent your life watching TV.', 'f0e194janispost1.jpg', '2021-04-26 14:47:37.880515', null, 1);

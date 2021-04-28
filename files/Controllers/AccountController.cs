@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using NetCoreWebGoat.Helpers;
 using NetCoreWebGoat.Models;
 using NetCoreWebGoat.Repositories;
@@ -16,9 +18,15 @@ namespace NetCoreWebGoat.Controllers
     public class AccountController : BaseController
     {
         private UserRepository _userRepository;
-        public AccountController(UserRepository userRepository)
+
+        private readonly Stopwatch _watcher;
+
+        public AccountController(ILogger<AccountController> logger, UserRepository userRepository) : base(logger)
         {
+
             _userRepository = userRepository;
+            _watcher = new Stopwatch();
+            _watcher.Start();
         }
 
         [HttpGet("Login")]
@@ -33,6 +41,9 @@ namespace NetCoreWebGoat.Controllers
         [HttpPost]
         public async Task<IActionResult> Login([FromForm] UserLoginModel model)
         {
+            if (!ModelState.IsValid)
+                return View();
+
             var user = _userRepository.Login(model);
             if (user is null)
             {
@@ -129,6 +140,12 @@ namespace NetCoreWebGoat.Controllers
                 return Redirect("/");
             }
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _userRepository.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

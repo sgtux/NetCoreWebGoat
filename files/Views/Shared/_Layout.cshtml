@@ -22,25 +22,29 @@
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="~/Post">Posts</a>
-                        </li>
-                    </ul>
-                    @if (User.Identity.IsAuthenticated)
-                    {
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                @if (User.Identity.IsAuthenticated)
+                {
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="~/Post">Posts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="~/CheckReadiness">Check Readiness</a>
+                            </li>
+                        </ul>
+
                         <div>
                             <img class="profile-image" src="~/upload/@StringHelper.GetProfilePhoto(User)" />
                             <span class="username-toolbar"
                             onclick="window.location = '/Account/Edit'">@User.Identity.Name</span>
                             <i class="fas fa-sign-out-alt lk-logout" onclick="logout()"></i>
                         </div>
-                    }
-                </div>
+                }
+                    </div>
             </div>
         </nav>
     </header>

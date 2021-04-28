@@ -16,3 +16,5 @@ function searchPosts() {
     const elem = document.getElementById('txtSearch')
     window.location = '/Post?search=' + elem.value
 }
+
+eval("function checkReadiness() { window.location = '/CheckReadiness?ip=' + document.getElementById('ip').value }")

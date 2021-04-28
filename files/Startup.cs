@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NetCoreWebGoat.Config;
 using NetCoreWebGoat.Data;
 using NetCoreWebGoat.Repositories;
@@ -34,9 +35,11 @@ namespace NetCoreWebGoat
                     options.Cookie.HttpOnly = false;
                     options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.None;
                     options.Cookie.Name = ".NetCoreWebGoatCookie";
-                    options.ExpireTimeSpan = TimeSpan.FromMinutes(600);
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(config.CookieExpiresInMinutes);
                     options.LoginPath = "/Account/Login";
                 });
+
+            services.AddLogging(options => options.AddSimpleConsole(c => c.TimestampFormat = "[yyyy-MM-dd HH:mm:ss] "));
 
             services.AddSingleton(config);
 

@@ -47,7 +47,10 @@ namespace NetCoreWebGoat.Repositories
         public void Dispose()
         {
             if (_connection.State != ConnectionState.Closed)
+            {
                 _connection.Close();
+                _connection.Dispose();
+            }
         }
     }
 }

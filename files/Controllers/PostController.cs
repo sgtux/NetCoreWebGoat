@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using NetCoreWebGoat.Helpers;
 using System;
+using Microsoft.Extensions.Logging;
 
 namespace NetCoreWebGoat.Controllers
 {
@@ -13,9 +14,9 @@ namespace NetCoreWebGoat.Controllers
     [Route("[controller]")]
     public class PostController : BaseController
     {
-        private PostRepository _postRepository;
+        private readonly PostRepository _postRepository;
 
-        public PostController(PostRepository postRepository)
+        public PostController(ILogger<PostController> logger, PostRepository postRepository) : base(logger)
         {
             _postRepository = postRepository;
         }
@@ -63,6 +64,12 @@ namespace NetCoreWebGoat.Controllers
         {
             _postRepository.Delete(id);
             return Redirect("/Post");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _postRepository.Dispose();
+            base.Dispose(disposing);
         }
     }
 }

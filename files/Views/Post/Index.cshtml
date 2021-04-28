@@ -3,8 +3,7 @@
 <div style="text-align: center">
     <input id="txtSearch" value="@ViewBag.Search" style="margin: 10px" /><button onclick="searchPosts()"
         class="btn btn-primary">Search</button><br />
-    <span>Results for: '@Html.Raw(ViewBag.Search)' <span>
-
+    <span>Results for: '@Html.Raw(ViewBag.Search)'<span>
 </div>
 @foreach (var item in Model)
 {
