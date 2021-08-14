@@ -23,7 +23,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DATABASE_CONNECTION_STRING": "Host=172.20.20.10;Port=5432;Pooling=true;User Id=postgres;Password=Postgres123",
-        "COOKIE_EXPIRES_IN_MINUTES": "1"
+        "COOKIE_EXPIRES_IN_MINUTES": "30",
+        "CSP_HTTP_HEADER": "img-src 'http://localhost:5000/'; report-uri /cspreport"
       }
     }
   }

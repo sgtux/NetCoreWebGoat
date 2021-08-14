@@ -1,0 +1,33 @@
+@model List<NetCoreWebGoat.Models.CspReportModel.CspReportProperty>
+<div class="text-center">
+    <h2 class="display-4">Csp Logs</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Document Uri</th>
+                <th>Line Number</th>
+                <th>Original Policy</th>
+                <th>Referrer</th>
+                <th>Source File</th>
+                <th>Violated Directive</th>
+            </tr>
+        </thead>
+        <tbody style="font-size: 12px">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.DateFormatted</td>
+                    <td>@item.DocumentUri</td>
+                    <td>@item.LineNumber</td>
+                    <td>@item.OriginalPolicy</td>
+                    <td>@item.Referrer</td>
+                    <td>@item.SourceFile</td>
+                    <td>@item.ViolatedDirective</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

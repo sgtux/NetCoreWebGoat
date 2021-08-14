@@ -19,6 +19,19 @@ CREATE TABLE "Post" (
     CONSTRAINT FK_POST_USER FOREIGN KEY (UserId) REFERENCES "User"(Id)
 );
 
+CREATE TABLE "CspReport" (
+    Id SERIAL PRIMARY KEY,
+    Date TIMESTAMP NOT NULL,
+    BlockedUri VARCHAR(500),
+    ColumnNumber INT,
+    DocumentUri VARCHAR(500),
+    LineNumber INT,
+    OriginalPolicy VARCHAR(500),
+    Referrer VARCHAR(500),
+    SourceFile VARCHAR(500),
+    ViolatedDirective VARCHAR(500)
+);
+
 INSERT INTO "User" (Name, LastName, Email, Password, Photo, CreatedAt, UpdatedAt) VALUES
 ('Janis', 'Joplin', 'janis@mail.com', '46f94c8de14fb36680850768ff1b7f2a', '4b0a5bindex.jpg', '2021-04-18 14:49:16.698882', '2021-04-26 14:49:26.435425'),
 ('Jimi', 'Hendrix', 'jimi@mail.com', '46f94c8de14fb36680850768ff1b7f2a', '4cc947jimiprofile.jpg', '2021-04-20 14:29:16.749603', '2021-04-26 14:45:12.258211'),

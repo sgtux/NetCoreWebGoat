@@ -1,0 +1,13 @@
+@model NetCoreWebGoat.Models.AppConfigModel
+<div class="text-center">
+    <h2 class="display-4">Response Http Headers</h2>
+    <form method="POST" asp-controller="Security" asp-action="Index">
+        <div class="editor-field">
+            <span>Content-Security-Policy: </span>
+            @Html.EditorFor(model => model.CspHttpHeader, new { htmlAttributes = new { style = "font-size: 12px;width: 300px" } })
+            <br />
+            @Html.ValidationMessageFor(model => model.CspHttpHeader)
+        </div>
+        <button class="btn btn-success">Save</button>
+    </form>
+</div>
