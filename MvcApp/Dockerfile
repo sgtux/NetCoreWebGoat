@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+FROM sgtux/dotnet-sdk-6 AS build
 COPY files /source
 WORKDIR /source/
 RUN dotnet publish -c release -o /app
 
-FROM mcr.microsoft.com/dotnet/aspnet:5.0
+FROM sgtux/aspnetcore-runtime-6
 WORKDIR /app
 COPY --from=build /app ./
-ENTRYPOINT ["dotnet", "NetCoreWebGoat.dll"]
+ENTRYPOINT ["dotnet", "NetCoreWebGoat.dll", "--urls=http://*"]

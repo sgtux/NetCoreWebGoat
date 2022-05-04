@@ -16,7 +16,8 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development 
       - COOKIE_EXPIRES_IN_MINUTES=30
       - CSP_HTTP_HEADER=img-src 'http://localhost:5000/'; report-uri /cspreport
-    image: sgtux/netcorewebgoat
+    # image: sgtux/netcorewebgoat
+    build: ./MvcApp
     networks:
       lan:
         ipv4_address: 172.40.40.20
