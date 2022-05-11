@@ -30,15 +30,15 @@ namespace NetCoreWebGoat.Controllers
         }
 
         [HttpGet("Login")]
-        public IActionResult Login()
+        public IActionResult Login([FromQuery]string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
                 return Redirect("/");
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
-        [Route("Login")]
-        [HttpPost]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login([FromForm] UserLoginModel model)
         {
             if (!ModelState.IsValid)
@@ -60,7 +60,7 @@ namespace NetCoreWebGoat.Controllers
                 claims.Add(new Claim("Photo", user.Photo));
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
-            return Redirect("/");
+            return Redirect(string.IsNullOrEmpty(model.ReturnUrl) ? "/" : model.ReturnUrl);
         }
 
         [HttpGet("Register")]
@@ -71,8 +71,7 @@ namespace NetCoreWebGoat.Controllers
             return View();
         }
 
-        [Route("Register")]
-        [HttpPost]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register([FromForm] UserRegisterModel model)
         {
             if (ModelState.IsValid)

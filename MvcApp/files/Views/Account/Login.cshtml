@@ -3,6 +3,7 @@
 <div class="text-center">
     <h1 class="text-dark display-4">Login</h1>
     <form method="POST" asp-controller="Account" asp-action="Login">
+        <input type="hidden" value="@ViewBag.ReturnUrl" name="ReturnUrl" />
         <div class="editor-field">
             @Html.EditorFor(model => model.Email, new { htmlAttributes = new { placeholder = "Email" } })
             <br />
