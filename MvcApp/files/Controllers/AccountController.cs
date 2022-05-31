@@ -51,14 +51,7 @@ namespace NetCoreWebGoat.Controllers
                 return View();
             }
 
-            var claims = new List<Claim>
-            {
-                new Claim("Id", user.Id.ToString()),
-                new Claim(ClaimTypes.Name, user.Name)
-            };
-            if (!string.IsNullOrEmpty(user.Photo))
-                claims.Add(new Claim("Photo", user.Photo));
-            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var claimsIdentity = new ClaimsIdentity(user.Claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
             return Redirect(string.IsNullOrEmpty(model.ReturnUrl) ? "/" : model.ReturnUrl);
         }
@@ -88,13 +81,7 @@ namespace NetCoreWebGoat.Controllers
 
                     var user = _userRepository.FindByEmail(model.Email);
 
-                    var claims = new List<Claim>
-                    {
-                        new Claim("Id", user.Id.ToString()),
-                        new Claim(ClaimTypes.Name, user.Name),
-                    };
-
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var claimsIdentity = new ClaimsIdentity(user.Claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await HttpContext.SignInAsync(new ClaimsPrincipal(claimsIdentity));
                     return Redirect("/");
                 }

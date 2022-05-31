@@ -1,7 +1,5 @@
-using System;
 using System.Buffers;
 using System.Linq;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -15,18 +13,16 @@ using Microsoft.Extensions.Options;
 using NetCoreWebGoat.Config;
 using NetCoreWebGoat.Data;
 using NetCoreWebGoat.Repositories;
+using NetCoreWebGoat.Extentions;
 
 namespace NetCoreWebGoat
 {
     public class Startup
     {
-        public AppConfig Config { get; }
-        public Startup(IConfiguration configuration)
-        {
-            Config = new AppConfig();
-        }
+        private AppConfig Config { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        public Startup(IConfiguration configuration) => Config = new AppConfig();
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews()
@@ -43,16 +39,7 @@ namespace NetCoreWebGoat
                 mvcOptions.InputFormatters.Add(formatter);
             });
 
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
-                {
-                    options.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.None;
-                    options.Cookie.HttpOnly = false;
-                    options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.None;
-                    options.Cookie.Name = ".NetCoreWebGoatCookie";
-                    options.ExpireTimeSpan = TimeSpan.FromMinutes(Config.CookieExpiresInMinutes);
-                    options.LoginPath = "/Account/Login";
-                });
+            services.ConfigureAuth(Config);
 
             services.AddLogging(options => options.AddSimpleConsole(c => c.TimestampFormat = "[yyyy-MM-dd HH:mm:ss] "));
 
@@ -65,7 +52,6 @@ namespace NetCoreWebGoat
             services.AddScoped<CspRepository>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -75,7 +61,6 @@ namespace NetCoreWebGoat
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             }
 
             app.UseHsts();

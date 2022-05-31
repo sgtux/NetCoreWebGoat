@@ -10,7 +10,6 @@ using Microsoft.Extensions.Logging;
 
 namespace NetCoreWebGoat.Controllers
 {
-    [Authorize]
     [Route("[controller]")]
     public class PostController : BaseController
     {
@@ -30,12 +29,14 @@ namespace NetCoreWebGoat.Controllers
             return View(posts);
         }
 
+        [Authorize]
         [HttpGet("Create")]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost("Create")]
         public async Task<IActionResult> Create(PostModel model)
         {
@@ -59,6 +60,7 @@ namespace NetCoreWebGoat.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpGet("Delete/{id}")]
         public IActionResult Delete(int id)
         {

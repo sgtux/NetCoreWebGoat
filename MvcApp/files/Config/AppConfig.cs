@@ -11,6 +11,8 @@ namespace NetCoreWebGoat.Config
 
         public string DatabaseConnectionString { get; }
 
+        public string JwtKey { get; }
+
         public bool IsDevelopment => _environmentName == "Development";
 
         public AppConfig()
@@ -19,6 +21,7 @@ namespace NetCoreWebGoat.Config
             DatabaseConnectionString = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
             CookieExpiresInMinutes = Convert.ToInt32(Environment.GetEnvironmentVariable("COOKIE_EXPIRES_IN_MINUTES"));
             CspHttpHeader = Environment.GetEnvironmentVariable("CSP_HTTP_HEADER");
+            JwtKey = Environment.GetEnvironmentVariable("JWT_KEY");
         }
 
         public string CspHttpHeader { get; set; }

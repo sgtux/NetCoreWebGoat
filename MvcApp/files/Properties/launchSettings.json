@@ -22,9 +22,10 @@
       "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "DATABASE_CONNECTION_STRING": "Host=172.20.20.10;Port=5432;Pooling=true;User Id=postgres;Password=Postgres123",
         "COOKIE_EXPIRES_IN_MINUTES": "30",
-        "CSP_HTTP_HEADER": "img-src 'http://localhost:5000/'; report-uri /cspreport"
+        "CSP_HTTP_HEADER": "img-src 'http://localhost:5000/'; report-uri /cspreport",
+        "DATABASE_CONNECTION_STRING": "Host=172.20.20.10;Port=5432;Pooling=true;User Id=postgres;Password=Postgres123",
+        "JWT_KEY": "utohWai7Iefa2loo7aeYeCo3HeWahpoKi5"
       }
     }
   }

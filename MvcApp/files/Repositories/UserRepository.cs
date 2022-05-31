@@ -12,7 +12,7 @@ namespace NetCoreWebGoat.Repositories
 
         public UserModel Login(UserLoginModel loginModel)
         {
-            using (var dataReader = Query($"SELECT Id, Email, Name, LastName, Password, Photo, CreatedAt, UpdatedAt FROM \"User\" WHERE Email = '{loginModel.Email}' AND Password = '{HashHelper.Md5(loginModel.Password)}'"))
+            using (var dataReader = Query($"SELECT Id, Email, Name, LastName, Password, Photo, Role, CreatedAt, UpdatedAt FROM \"User\" WHERE Email = '{loginModel.Email}' AND Password = '{HashHelper.Md5(loginModel.Password)}'"))
             {
                 if (dataReader.HasRows && dataReader.Read())
                     return new UserModel(dataReader);
@@ -22,7 +22,7 @@ namespace NetCoreWebGoat.Repositories
 
         public UserModel FindByEmail(string email)
         {
-            using (var dataReader = Query($"SELECT Id, Email, Name, LastName, Password, Photo, CreatedAt, UpdatedAt FROM \"User\" WHERE Email = '{email}'"))
+            using (var dataReader = Query($"SELECT Id, Email, Name, LastName, Password, Photo, Role, CreatedAt, UpdatedAt FROM \"User\" WHERE Email = '{email}'"))
             {
                 if (dataReader.HasRows && dataReader.Read())
                     return new UserModel(dataReader);
@@ -32,12 +32,22 @@ namespace NetCoreWebGoat.Repositories
 
         public UserModel FindById(string id)
         {
-            using (var dataReader = Query($"SELECT Id, Email, Name, LastName, Password, Photo, CreatedAt, UpdatedAt FROM \"User\" WHERE Id = '{id}'"))
+            using (var dataReader = Query($"SELECT Id, Email, Name, LastName, Password, Photo, Role CreatedAt, UpdatedAt FROM \"User\" WHERE Id = '{id}'"))
             {
                 if (dataReader.HasRows && dataReader.Read())
                     return new UserModel(dataReader);
             }
             return null;
+        }
+
+        public List<UserModel> FindAll()
+        {
+            var list = new List<UserModel>();
+            using (var dataReader = Query("SELECT Id, Email, Name, LastName, Password, Photo, Role, CreatedAt, UpdatedAt FROM \"User\""))
+                if (dataReader.HasRows)
+                    while (dataReader.HasRows && dataReader.Read())
+                        list.Add(new UserModel(dataReader));
+            return list;
         }
 
         public void Register(UserRegisterModel model)

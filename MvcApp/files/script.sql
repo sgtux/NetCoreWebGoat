@@ -5,6 +5,7 @@ CREATE TABLE "User" (
     Email VARCHAR(200) NOT NULL,
     Password VARCHAR(200) NOT NULL,
     Photo VARCHAR(500),
+    Role INT,
     CreatedAt TIMESTAMP NOT NULL,
     UpdatedAt TIMESTAMP
 );
@@ -32,10 +33,10 @@ CREATE TABLE "CspReport" (
     ViolatedDirective VARCHAR(500)
 );
 
-INSERT INTO "User" (Name, LastName, Email, Password, Photo, CreatedAt, UpdatedAt) VALUES
-('Janis', 'Joplin', 'janis@mail.com', '46f94c8de14fb36680850768ff1b7f2a', '4b0a5bindex.jpg', '2021-04-18 14:49:16.698882', '2021-04-26 14:49:26.435425'),
-('Jimi', 'Hendrix', 'jimi@mail.com', '46f94c8de14fb36680850768ff1b7f2a', '4cc947jimiprofile.jpg', '2021-04-20 14:29:16.749603', '2021-04-26 14:45:12.258211'),
-('Bob', 'Marley', 'bob@mail.com', '46f94c8de14fb36680850768ff1b7f2a', '46871abobprofile.jpg', '2021-04-21 14:46:00.556941', '2021-04-26 14:11:48.999775');
+INSERT INTO "User" (Name, LastName, Email, Password, Photo, Role, CreatedAt, UpdatedAt) VALUES
+('Janis', 'Joplin', 'janis@mail.com', '46f94c8de14fb36680850768ff1b7f2a', '4b0a5bindex.jpg', 2, '2021-04-18 14:49:16.698882', '2021-04-26 14:49:26.435425'),
+('Jimi', 'Hendrix', 'jimi@mail.com', '46f94c8de14fb36680850768ff1b7f2a', '4cc947jimiprofile.jpg', 2, '2021-04-20 14:29:16.749603', '2021-04-26 14:45:12.258211'),
+('Bob', 'Marley', 'bob@mail.com', '46f94c8de14fb36680850768ff1b7f2a', '46871abobprofile.jpg', 1, '2021-04-21 14:46:00.556941', '2021-04-26 14:11:48.999775');
 
 INSERT INTO "Post" (Text, Photo, CreatedAt, UpdatedAt, UserId) VALUES
 ('Everything that you want from me negative will stick to your chest and return in the form of peace.', 'cf96c2bobpost2.jpg', '2021-04-22 14:54:59.629374', null, 3),

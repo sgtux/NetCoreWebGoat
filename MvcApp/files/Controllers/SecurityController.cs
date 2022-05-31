@@ -11,7 +11,8 @@ namespace NetCoreWebGoat.Controllers
     public class SecurityController : BaseController
     {
         private AppConfig _appConfig;
-        public SecurityController(ILogger<PostController> logger, AppConfig appConfig) : base(logger)
+        
+        public SecurityController(ILogger<SecurityController> logger, AppConfig appConfig) : base(logger)
         {
             _appConfig = appConfig;
         }

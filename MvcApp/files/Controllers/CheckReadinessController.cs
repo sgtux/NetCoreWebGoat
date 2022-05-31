@@ -8,7 +8,7 @@ namespace NetCoreWebGoat.Controllers
     [Route("[controller]")]
     public class CheckReadinessController : BaseController
     {
-        public CheckReadinessController(ILogger<PostController> logger) : base(logger) { }
+        public CheckReadinessController(ILogger<CheckReadinessController> logger) : base(logger) { }
 
         [HttpGet]
         public IActionResult Index([FromQuery] string ip)
