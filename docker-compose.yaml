@@ -16,7 +16,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development 
       - COOKIE_EXPIRES_IN_MINUTES=30
       - CSP_HTTP_HEADER=img-src 'http://localhost:5000/'; report-uri /cspreport
-    # image: sgtux/netcorewebgoat
+      - JWT_KEY=utohWai7Iefa2loo7aeYeCo3HeWahpoKi5
     build: ./MvcApp
     networks:
       lan:
